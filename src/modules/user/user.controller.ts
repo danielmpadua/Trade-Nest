@@ -10,7 +10,7 @@ export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
-  @Get('user')
+  @Get('users')
   async findAll(): Promise<ListUserDTO[]> {
     return await this.userService.findAll();
   }
@@ -26,10 +26,12 @@ export class UserController {
   // }
 
   // @UsePipes(new ValidationPipe())
-  // @Post('users')
-  // async create(@Body('user') userData: CreateUserDto) {
-  //   // return this.userService.create(userData);
-  // }
+  @Post('users')
+  async create(@Body() userData: CreateUserDto) {
+    console.log(userData)
+
+    return this.userService.create(userData);
+  }
 
   // @Delete('users/:slug')
   // async delete(@Param() params) {

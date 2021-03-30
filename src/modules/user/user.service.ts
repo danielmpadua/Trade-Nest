@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getRepository, DeleteResult } from 'typeorm';
 import { UserEntity } from './user.entity';
-import {CreateUserDto, UpdateUserDto} from './dto';
+import { CreateUserDto, UpdateUserDto, ListUserDTO } from './dto';
 import {UserRepository} from './user.repository'
 
 @Injectable()
@@ -13,7 +13,9 @@ export class UserService {
   ) {}
 
   async findAll(): Promise<any[]> {
-    return await this.userRepository.findAll()
+    const [users, total] = await this.userRepository.findAndCount();
+    console.log(total)
+    return users;
   }
 
   // async findById(id: number): Promise<UserRO>{
@@ -32,9 +34,9 @@ export class UserService {
   //   return this.buildUserRO(user);
   // }
 
-  // async create(dto: CreateUserDto): Promise<UserRO> {
-
-  // }
+  async create(dto: CreateUserDto): Promise<any> {
+    return await this.userRepository.createUser(dto);
+  }
 
   // async update(id: number, dto: UpdateUserDto): Promise<UserEntity> {
   //   let toUpdate = await this.userRepository.findOne(id);
