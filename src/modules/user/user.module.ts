@@ -4,9 +4,7 @@ import { UserRepository } from './user.repository'
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      UserRepository
-    ])
+    TypeOrmModule.forFeature([UserRepository])
   ]
 })
 export class UserModule { }
