@@ -23,7 +23,7 @@ export class UserRepository extends Repository<UserEntity> {
 
     async getByEmail(email: string): Promise<ListUserDTO | undefined> {
         const query = this.createQueryBuilder("user")
-            .select(["user.id", "user.name", "user.email"])
+            .select(["user.id", "user.name", "user.email", "user.password"])
             .where("user.email = :email", { email })
             .execute();
 

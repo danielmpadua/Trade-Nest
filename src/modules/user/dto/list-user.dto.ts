@@ -5,7 +5,7 @@ export class ListUserDTO {
   readonly id: string;
 
   @ApiProperty()
-  readonly username: string;
+  readonly name: string;
 
   @ApiProperty()
   readonly email: string;
