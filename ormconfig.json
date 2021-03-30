@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "postgres",
+  "database": "tradenest",
+  "entities": ["src/modules/**.entity{.ts,.js}"],
+  "synchronize": true
+}
