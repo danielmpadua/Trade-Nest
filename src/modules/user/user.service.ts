@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getRepository, DeleteResult } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { CreateUserDto, UpdateUserDto, ListUserDTO } from './dto';
-import {UserRepository} from './user.repository'
+import {UserRepository} from './user.repository';
 
 @Injectable()
 export class UserService {
@@ -13,41 +13,26 @@ export class UserService {
   ) {}
 
   async findAll(): Promise<any[]> {
-    const [users, total] = await this.userRepository.findAndCount();
-    console.log(total)
-    return users;
+    return await this.userRepository.getAll();
   }
 
-  // async findById(id: number): Promise<UserRO>{
-  //   const user = await this.userRepository.findOne(id);
-
-  //   if (!user) {
-  //     const errors = {User: ' not found'};
-  //     throw new HttpException({errors}, 401);
-  //   }
-
-  //   return this.buildUserRO(user);
-  // }
-
-  // async findByEmail(email: string): Promise<UserRO>{
-  //   const user = await this.userRepository.findOne({email: email});
-  //   return this.buildUserRO(user);
-  // }
-
-  async create(dto: CreateUserDto): Promise<any> {
-    return await this.userRepository.createUser(dto);
+  async findById(id: string): Promise<ListUserDTO | undefined>{
+    return await this.userRepository.getById(id);
   }
 
-  // async update(id: number, dto: UpdateUserDto): Promise<UserEntity> {
-  //   let toUpdate = await this.userRepository.findOne(id);
-  //   delete toUpdate.password;
-  //   delete toUpdate.favorites;
+  async findByEmail(email: string): Promise<ListUserDTO | undefined>{
+    return await this.userRepository.getByEmail(email);
+  }
 
-  //   let updated = Object.assign(toUpdate, dto);
-  //   return await this.userRepository.save(updated);
-  // }
+  async create(userDTO: CreateUserDto): Promise<any> {
+    return await this.userRepository.createUser(userDTO);
+  }
 
-  // async delete(email: string): Promise<DeleteResult> {
-  //   return await this.userRepository.delete({ email: email});
-  // }
+  async update(id: string, userDTO: UpdateUserDto): Promise<UserEntity> {
+    return await this.userRepository.updateUser(id, userDTO);
+  }
+
+  async delete(id: string): Promise<any> {
+    return await this.userRepository.deleteUser(id);
+  }
 }
