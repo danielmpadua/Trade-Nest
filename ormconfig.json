@@ -5,6 +5,9 @@
   "username": "postgres",
   "password": "docker",
   "database": "tradenest",
-  "entities": ["./dist/modules/**/*.entity.js"],
-  "synchronize": true
+  "entities": ["./dist/modules/**/*.entity{.ts,.js}"],
+  "synchronize": false,
+  "migrations": ["dist/migrations/*{.ts,.js}"],
+  "migrationsTableName": "migrations_typeorm",
+  "migrationsRun": true
 }
