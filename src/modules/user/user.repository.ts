@@ -5,7 +5,7 @@ import { CreateUserDto, UpdateUserDto, ListUserDTO } from './dto';
 @EntityRepository(UserEntity)
 export class UserRepository extends Repository<UserEntity> {
     async getAll(): Promise<ListUserDTO[]> {
-        const query = this.createQueryBuilder("user")
+        const query = await this.createQueryBuilder("user")
             .select(["user.id", "user.name", "user.email"])
             .execute();
 
@@ -13,21 +13,21 @@ export class UserRepository extends Repository<UserEntity> {
     }
 
     async getById(id: string): Promise<ListUserDTO | undefined> {
-        const query = this.createQueryBuilder("user")
+        const query = await this.createQueryBuilder("user")
             .select(["user.id", "user.name", "user.email"])
             .where("user.id = :id", { id })
             .execute();
 
-        return query;
+        return query[0];
     } 
 
     async getByEmail(email: string): Promise<ListUserDTO | undefined> {
-        const query = this.createQueryBuilder("user")
+        const query = await this.createQueryBuilder("user")
             .select(["user.id", "user.name", "user.email", "user.password"])
             .where("user.email = :email", { email })
             .execute();
 
-        return query;
+        return query[0];
     }
 
     async createUser(userDTO: CreateUserDto): Promise<any> {
