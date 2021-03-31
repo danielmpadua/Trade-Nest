@@ -20,7 +20,7 @@ export class UserService {
     return await this.userRepository.getById(id);
   }
 
-  async findByEmail(email: string): Promise<ListUserDTO | undefined>{
+  async findByEmail(email: string): Promise<any | undefined>{
     return await this.userRepository.getByEmail(email);
   }
 

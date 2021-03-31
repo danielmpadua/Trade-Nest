@@ -31,6 +31,16 @@ export class UserCreate1617120393029 implements MigrationInterface {
                   type: 'varchar',
                   isNullable: false,
                 },
+                {
+                  name: "created_at",
+                  type: "timestamp",
+                  default: "now()",
+                },
+                {
+                  name: "updated_at",
+                  type: "timestamp",
+                  default: "now()",
+                },
               ],
             }),
         );
