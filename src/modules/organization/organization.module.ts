@@ -11,4 +11,4 @@ import { OrganizationService } from './organization.service';
   controllers: [OrganizationController],
   providers: [OrganizationService],
 })
-export class OrganizationModule { }
+export class OrganizationModule {}

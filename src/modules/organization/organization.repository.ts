@@ -4,7 +4,7 @@ import { CreateOrganizationDto, UpdateOrganizationDto, ListOrganizationDTO } fro
 
 @EntityRepository(OrganizationEntity)
 export class OrganizationRepository extends Repository<OrganizationEntity> {
-    async getAll(): Promise<ListOrganizationDTO[]> {
+    async getAll(): Promise<OrganizationEntity[]> {
         const query = this.createQueryBuilder("organization")
             .select(["organization.id", "organization.name", "organization.description"])
             .execute();

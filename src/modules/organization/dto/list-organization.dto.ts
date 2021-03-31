@@ -8,5 +8,5 @@ export class ListOrganizationDTO {
   readonly name: string;
 
   @ApiProperty()
-  readonly descriprion: string;
+  readonly description?: string;
 }
