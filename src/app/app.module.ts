@@ -2,12 +2,14 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from '../modules/user/user.module'
+import { OrganizationModule } from '../modules/organization/organization.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Connection } from 'typeorm'
 
 @Module({
   imports: [
     UserModule,
+    OrganizationModule,
     TypeOrmModule.forRoot(),
   ],
   controllers: [AppController],
